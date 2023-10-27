@@ -62,13 +62,15 @@ ul{
 }
 .search_inp{
   width: 68%;
-  padding: 1.3em;
+  height: 50px;
+  /* padding: 1.3em; */
   border: none;
   outline: none;
   border-radius: 0%;
 }
 .search_btn{
-  width: 22%;
+  min-width: fit-content !important;
+  height: 53px;
   padding: 1em;
   border: none;
   outline: none;
@@ -154,10 +156,10 @@ a:focus{
 .hide_mobile{
   display: none;
 }
-.nav, nav, .container{
+/* .nav, nav, .container{
   padding-left: 2rem;
   padding-right: 2rem;
-}
+} */
 }
 
 @media(max-width:800px){

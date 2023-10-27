@@ -72,7 +72,7 @@ function Search_result() {
 
                                     <div style={{ display: "flex", alignItems: "center" }}>
                                         <input type="text" ref={inputRef} className='search_inp' placeholder='🎥 Search Movie' />
-                                        <button type="submit" onClick={() => getInput(inputRef.current.value)} className='search_btn' style={{ width: "5rem" }}>
+                                        <button type="submit" onClick={() => getInput(inputRef.current.value)} className='search_btn' >
                                             Search
                                         </button>
                                     </div>
