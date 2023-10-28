@@ -29,8 +29,8 @@ function Filter({ input }) {
                 movies.push(...response.data.Search)
                 setMovies(movies)
                 setdisplayData(movies[0])
-                console.log(movies)
-                console.log(displayData)
+                // console.log(movies)
+                // console.log(displayData)
             } catch (error) {
                 console.log(error);
             } finally {

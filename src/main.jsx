@@ -11,7 +11,7 @@ const Movies = React.lazy(() => import('./pages/movie'))
 
 const router = createBrowserRouter([
   { path: "/", element: <Home />, errorElement: <h1>Page not found</h1> },
-  { path: "/search", element: <View /> },
+  { path: "/search/:param", element: <View /> },
   { path: "/movies", element: <Movies /> }
 
 ])

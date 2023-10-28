@@ -14,7 +14,8 @@ function Searchbtn({top}) {
   
     const getInput = (value) => {
       if (value !== " ") {
-        navigate(`/search`)
+          console.log(value);
+        navigate(`/search/${value}`)
       }
       else {
         alert("Please enter a value")
