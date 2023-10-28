@@ -1,14 +1,20 @@
+import { useEffect } from "react";
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Searchbtn({top}) {
     const inputRef = useRef(null)
     const Navigate = useNavigate(null)
+    const {param} = useParams()
+
+
+    useEffect(()=>{;
+      return;
+    },[param])
   
     const getInput = (value) => {
       if (value !== " ") {
-        console.log("yes");
-        Navigate(`search/${inputRef.current.value}`)
+        Navigate(`/search/${value}`)
       }
       else {
         alert("Please enter a value")

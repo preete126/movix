@@ -1,9 +1,6 @@
-*{
-  /* border: solid 1px red; */
-}
+
 .background{
   background-image: url("../images/bg1.jpg");
-  /* background-position: center; */
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
@@ -110,8 +107,6 @@ background-color: white;
 border: solid 3px rgb(187, 241, 173);
 }
 .watch_now2{
-  /* width: 0px; */
-  /* height: 60px; */
   border-radius: 50%;
 background-color: rgb(12, 12, 12);
 border: solid 3px rgb(187, 241, 173);
@@ -176,5 +171,17 @@ a:focus{
 @media(max-width:1000px){
   .intro{
     font-size: 35px;
+  }
+  
+}
+@media(max-width:992px){
+  #navbarSupportedContent{
+    background-color: rgba(97, 93, 93, 0.514);
+    
+
+  }
+  #navbarSupportedContent ul{
+    padding-left: 8px;
+    align-items: flex-start;
   }
 }

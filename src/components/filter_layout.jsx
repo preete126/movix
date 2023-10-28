@@ -71,7 +71,7 @@ function Filter({ input }) {
                                 !play ?
                                     <section id="top">
                                         <div className="f_img" style={{ backgroundImage: `url(${bg1})` }}>
-                                            <section className="watchlist"> 📜 Add to Watchlist</section>
+                                            <section className="watchlist" onClick={() => setWatchList(watchList + 1)}> 📜 Add to Watchlist</section>
 
                                             <section className="movie_display">
                                                 <h2 className="f_name">{displayData?.Title}</h2>
@@ -90,8 +90,9 @@ function Filter({ input }) {
                                     <section className="f_video">
                                         <button onClick={() => setPlay(false)} className="backbtn">Back</button>
                                         <h2 className="f_name">{displayData?.Title}</h2>
-                                        <i>{displayData?.Language}</i>
+                                        <i>{displayData?.Language}</i>/
                                         <h1>{displayData?.Plot}</h1>
+                                        <h5>{displayData?.Poster}</h5>
                                     </section>
                             }
                             </main>
