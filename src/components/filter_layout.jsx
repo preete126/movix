@@ -14,11 +14,13 @@ function Filter({ input }) {
     const [play, setPlay] = useState(false)
     const [displayData, setdisplayData] = useState(null)
     const [watchList, setWatchList] = useState(0)
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         const fetch = async () => {
             let response = null;
             try {
+                setLoading(true)
                 if (input == "latest") {
                     response = await get_movie(input)
                 } else {
@@ -31,6 +33,8 @@ function Filter({ input }) {
                 console.log(displayData)
             } catch (error) {
                 console.log(error);
+            } finally {
+                setLoading(false);
             }
         }
 
@@ -55,72 +59,82 @@ function Filter({ input }) {
                 <section className="background2">
                     <Navbar watchList={watchList} />
 
+                    {loading ? 
+                    <div className="f_img text-center">
+                        <div className="spinner-grow text-light text-center" style={{width:"30rem",height: "30rem"}} role="status">
+                        <span className="text-black d-flex" style={{fontSize:"70px",alignItems: "center",justifyContent:"center"}}>MOVIX...</span>
+                    </div>
+                    </div> :
 
-                    <main className="mb-5">{
-                        !play ?
-                            <section  id="top">
-                                <div className="f_img" style={{ backgroundImage: `url(${bg1})` }}>
-                                    <section className="watchlist"> 📜 Add to Watchlist</section>
+                        <>
+                            <main className="mb-5">{
+                                !play ?
+                                    <section id="top">
+                                        <div className="f_img" style={{ backgroundImage: `url(${bg1})` }}>
+                                            <section className="watchlist"> 📜 Add to Watchlist</section>
 
-                                    <section className="movie_display">
+                                            <section className="movie_display">
+                                                <h2 className="f_name">{displayData?.Title}</h2>
+                                                <section className="f_info">
+                                                    <i> imdbID {displayData?.imdbID}</i> |
+                                                    <i>{displayData?.Year}</i> ∙
+                                                    <i>{displayData?.Runtime}</i> ∙
+                                                    <i>{displayData?.Type}</i>
+                                                </section>
+                                                <button onClick={() => setPlay(true)} className="watch_now">▶</button>
+                                            </section>
+                                            <section className="sound"><i>Sound | Off 🔊</i></section>
+
+                                        </div>
+                                    </section> :
+                                    <section className="f_video">
+                                        <button onClick={() => setPlay(false)} className="backbtn">Back</button>
                                         <h2 className="f_name">{displayData?.Title}</h2>
-                                        <section className="f_info">
-                                            <i> imdbID {displayData?.imdbID}</i> |
-                                            <i>{displayData?.Year}</i> ∙
-                                            <i>{displayData?.Runtime}</i> ∙
-                                            <i>{displayData?.Type}</i>
-                                        </section>
-                                        <button onClick={() => setPlay(true)} className="watch_now">▶</button>
+                                        <i>{displayData?.Language}</i>
+                                        <h1>{displayData?.Plot}</h1>
                                     </section>
-                                    <section className="sound"><i>Sound | Off 🔊</i></section>
+                            }
+                            </main>
 
-                                </div>
-                            </section> :
-                            <section className="f_video">
-                                <button onClick={() => setPlay(false)} className="backbtn">Back</button>
-                                <h2 className="f_name">{displayData?.Title}</h2>
-                                <i>{displayData?.Language}</i>
-                                <h1>{displayData?.Plot}</h1>
-                            </section>
-                    }
-                    </main>
-
-                    <main>
-                        <main className="row row-cols-1 row-cols-md-3 g-2 w-100 ">
-                            {movies.length == 0 ? <div>No result match your search</div> :
-                                < >{
-                                    movies.map((value, index) =>
-                                        <div key={index} className="col ">
-                                            <div className="card h-100 text-center list">
-                                                <div className="card-body row g-0">
-                                                    <div className="col-md-5">
-                                                        <img src={bg2} className="card-img" alt="..." />
-                                                    </div>
-                                                    <div className="col-md-7">
-                                                        <h5 className="f_name">{value?.Title}</h5>
-                                                        <i>{value?.Year}</i> ∙
-                                                        <i>{value?.Runtime}</i> ∙
-                                                        <i>{value?.Type}</i>
-                                                        <div className="card-footer bg-transparent border-success d-flex ">
-                                                            <section className="watchlist " onClick={() => setWatchList(watchList + 1)}>➕ Watchlist</section>
-                                                            <a href="#top" onClick={() => setdisplayData(movies[index])} >
-                                                                <button className="watch_now2">
-                                                                    ▶
-                                                                </button>
-                                                            </a>
+                            <main>
+                                <main className="row row-cols-1 row-cols-md-3 g-2 w-100 ">
+                                    {movies.length == 0 ? <div>No result match your search</div> :
+                                        < >{
+                                            movies.map((value, index) =>
+                                                <div key={index} className="col ">
+                                                    <div className="card h-100 text-center list">
+                                                        <div className="card-body row g-0">
+                                                            <div className="col-md-5">
+                                                                <img src={bg2} className="card-img" alt="..." />
+                                                            </div>
+                                                            <div className="col-md-7">
+                                                                <h5 className="f_name">{value?.Title}</h5>
+                                                                <i>{value?.Year}</i> ∙
+                                                                <i>{value?.Runtime}</i> ∙
+                                                                <i>{value?.Type}</i>
+                                                                <div className="card-footer bg-transparent border-success d-flex ">
+                                                                    <section className="watchlist " onClick={() => setWatchList(watchList + 1)}>➕ Watchlist</section>
+                                                                    <a href="#top" onClick={() => setdisplayData(movies[index])} >
+                                                                        <button className="watch_now2">
+                                                                            ▶
+                                                                        </button>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    )}
+                                            )}
 
-                                </>
-                            }
-                        </main>
-                    </main>
+                                        </>
+                                    }
+                                </main>
+                            </main>
+                        </>
+                    }
+
                 </section>
-                
+
             </main>
         </>
     );
