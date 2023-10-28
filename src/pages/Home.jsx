@@ -2,13 +2,14 @@ import { useRef } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import "../assets/style/App.css"
 import mobile from "../assets/images/mobile.png"
+import HomeNav from "../components/navbar2"
 
 function App() {
   const inputRef = useRef(null)
   const Navigate = useNavigate(null)
 
   const getInput = (value) => {
-    if (value !== "" && value !== " ") {
+    if (value !== " ") {
       Navigate(`search/${inputRef.current.value}`)
     }
     else {
@@ -20,37 +21,15 @@ function App() {
     <>
       <main>
         <section className="background">
-          <nav>
-            <Link to={"/"}>
-              <div className='app_name'>MOVIX</div>
-            </Link>
-            <div>
-              <ul className="show_mobile">
-                <img src={mobile} width={"32px"} alt="" />
-              </ul>
-              <ul className="hide_mobile">
-                <Link to={"/"}>
-                  <li>Home</li>
-                </Link>
-                <li>Movies</li>
-                <li>Actors</li>
-                <li>
-                  <button className='sign_up'>Sign up</button>
-                </li>
-              </ul>
-            </div>
-          </nav>
-          <div style={{ maxWidth: "29rem", padding: "1rem 3rem", marginBottom: "auto", marginTop: "auto" }}>
+          <HomeNav />
+          <div className="px-3" style={{ textAlign: "center", margin: "auto" }}>
             <div className='intro'>
-              Pass the day <br /> by watching the best streaming according to your version.
+              Pass the day <br /> by watching the best streaming <br /> according to your version.
             </div>
-            {/* <Search_btn margin={"2rem"} width1={"68%"} width2={"22%"} route={"single"} /> */}
-            <div style={{ display: "flex", alignItems: "center", marginTop: "2rem" }}>
-              <input type="text" ref={inputRef} className='search_inp' placeholder='🎥 Search Movie' />
-              <button onClick={() => getInput(inputRef.current.value)} type="submit" className='search_btn'>
-                Search
-              </button>
-            </div>
+            <form onSubmit={() => getInput(inputRef.current.value)} className="d-flex mt-4" role="search">
+              <input className="form-control-lg w-75 me-2 rounded-0 border-0" required ref={inputRef} style={{ outline: "none" }} type="search" placeholder="Search" aria-label="Search" />
+              <button className="btn w-25 search_btn" type="submit">Search</button>
+            </form>
           </div>
         </section>
       </main>
