@@ -98,7 +98,7 @@ function Filter({ input }) {
                             </main>
 
                             <main>
-                                <main className="row row-cols-1 row-cols-md-3 g-2 w-100 ">
+                                <main className="row row-cols-1 row-cols-md-3 g-2 w-100 p-5">
                                     {movies.length == 0 ? <div>No result match your search</div> :
                                         < >{
                                             movies.map((value, index) =>
