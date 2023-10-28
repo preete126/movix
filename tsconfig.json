@@ -1,0 +1,6 @@
+// tsconfig.json
+{
+  "compilerOptions": {
+    "types": ["vite/client", "@types/jest", "cypress"],
+  },
+}
