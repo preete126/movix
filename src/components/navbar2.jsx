@@ -6,7 +6,7 @@ function HomeNav() {
             <nav className="navbar navbar-expand-lg text-white py-4 px-0 px-sm-4">
                 <div className="container-fluid">
                     <Link to={"/"} className="navbar-brand app_name" href="#">MOVIX</Link>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button className="navbar-toggler" style={{background:"linear-gradient(rgb(33,73,55), rgb(148, 216, 183))"}} type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">

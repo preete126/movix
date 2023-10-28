@@ -1,30 +1,31 @@
 import { useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../assets/style/App.css"
+import Searchbtn from "./searchbtn";
 
 function Navbar(data) {
-    const inputRef = useRef(null)
-    const Navigate = useNavigate(null)
-    let { pathname } = useLocation(null)
+    // const inputRef = useRef(null)
+    // const Navigate = useNavigate(null)
+    // let { pathname } = useLocation(null)
 
-    const getInput = (ev, value) => {
-        ev.preventDefault()
-        if (value !== " ") {
-            // console.log(window.location.pathname.substring(1)); 
-            window.location.pathname = `search/${inputRef.current.value}`
-            // Navigate()(pathname = `search/${inputRef.current.value}`) ;
-        }
-        else {
-            alert("Please enter a value")
-        }
-    }
+    // const getInput = (ev, value) => {
+    //     ev.preventDefault()
+    //     if (value !== " ") {
+    //         // console.log(window.location.pathname.substring(1)); 
+    //         window.location.pathname = `search/${inputRef.current.value}`
+    //         // Navigate()(pathname = `search/${inputRef.current.value}`) ;
+    //     }
+    //     else {
+    //         alert("Please enter a value")
+    //     }
+    // }
 
     return (
         <>
             <nav className="navbar navbar-expand-lg text-white py-4 px-0 px-sm-4">
                 <div className="container-fluid">
                     <Link to={"/"} className="navbar-brand app_name" href="#">MOVIX</Link>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button className="navbar-toggler" style={{background:"linear-gradient(rgb(33,73,55), rgb(148, 216, 183))"}} type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -43,10 +44,7 @@ function Navbar(data) {
                                     </span>
                             </li>
                         </ul>
-                        <form onSubmit={(event) => getInput(event, inputRef.current.value)} className="d-flex" role="search">
-                            <input className="form-control-lg me-2 rounded-0 border-0" required ref={inputRef} style={{ outline: "none" }} type="search" placeholder="Search" aria-label="Search" />
-                            <button className="btn search_btn" type="submit">Search</button>
-                        </form>
+                        <Searchbtn/>
                     </div>
                 </div>
             </nav>
