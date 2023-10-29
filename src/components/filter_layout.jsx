@@ -1,15 +1,22 @@
-import { useEffect, useState } from "react";
-import { get_movie } from "../services/movix";
+import {useEffect, useState} from "react";
+import {get_movie} from "../services/movix";
 import "../assets/style/App.css"
-import { Link, useParams } from "react-router-dom";
+import React from "react";
+import {useLocation} from "react-router-dom";
 import Navbar from "../components/navbar1";
 import bg1 from "../assets/images/johnwick.jpg"
 import bg2 from "../assets/images/portrait.webp"
 
-// 
-function Filter({ input }) {
+function useQuery() {
+    const {search} = useLocation();
+
+    return React.useMemo(() => new URLSearchParams(search), [search]);
+}
+
+//
+function Filter({input}) {
     let isMounted = true
-    const { param } = useParams()
+    let query = useQuery();
     const [movies, setMovies] = useState([])
     const [play, setPlay] = useState(false)
     const [displayData, setdisplayData] = useState(null)
@@ -21,10 +28,10 @@ function Filter({ input }) {
             let response = null;
             try {
                 setLoading(true)
-                if (input == "latest") {
+                if (input === "latest") {
                     response = await get_movie(input)
                 } else {
-                    response = await get_movie(param)
+                    response = await get_movie(query.get("title"))
                 }
                 movies.push(...response.data.Search)
                 setMovies(movies)
@@ -57,21 +64,28 @@ function Filter({ input }) {
         <>
             <main>
                 <section className="background2">
-                    <Navbar watchList={watchList} />
+                    <Navbar watchList={watchList}/>
 
-                    {loading ? 
-                    <div className="f_img text-center">
-                        <div className="spinner-grow text-light text-center" style={{width:"30rem",height: "30rem"}} role="status">
-                        <span className="text-black d-flex" style={{fontSize:"70px",alignItems: "center",justifyContent:"center"}}>MOVIX...</span>
-                    </div>
-                    </div> :
+                    {loading ?
+                        <div className="f_img text-center">
+                            <div className="spinner-grow text-light text-center"
+                                 style={{width: "30rem", height: "30rem"}} role="status">
+                                <span className="text-black d-flex" style={{
+                                    fontSize: "70px",
+                                    alignItems: "center",
+                                    justifyContent: "center"
+                                }}>MOVIX...</span>
+                            </div>
+                        </div> :
 
                         <>
                             <main className="mb-5">{
                                 !play ?
                                     <section id="top">
-                                        <div className="f_img" style={{ backgroundImage: `url(${bg1})` }}>
-                                            <section className="watchlist" onClick={() => setWatchList(watchList + 1)}> 📜 Add to Watchlist</section>
+                                        <div className="f_img" style={{backgroundImage: `url(${bg1})`}}>
+                                            <section className="watchlist"
+                                                     onClick={() => setWatchList(watchList + 1)}> 📜 Add to Watchlist
+                                            </section>
 
                                             <section className="movie_display">
                                                 <h2 className="f_name">{displayData?.Title}</h2>
@@ -106,16 +120,21 @@ function Filter({ input }) {
                                                     <div className="card h-100 text-center list">
                                                         <div className="card-body row g-0">
                                                             <div className="col-md-5">
-                                                                <img src={bg2} className="card-img" alt="..." />
+                                                                <img src={bg2} className="card-img" alt="..."/>
                                                             </div>
                                                             <div className="col-md-7">
                                                                 <h5 className="f_name">{value?.Title}</h5>
                                                                 <i>{value?.Year}</i> ∙
                                                                 <i>{value?.Runtime}</i> ∙
                                                                 <i>{value?.Type}</i>
-                                                                <div className="card-footer bg-transparent border-success d-flex ">
-                                                                    <section className="watchlist " onClick={() => setWatchList(watchList + 1)}>➕ Watchlist</section>
-                                                                    <a href="#top" onClick={() => setdisplayData(movies[index])} >
+                                                                <div
+                                                                    className="card-footer bg-transparent border-success d-flex ">
+                                                                    <section className="watchlist "
+                                                                             onClick={() => setWatchList(watchList + 1)}>➕
+                                                                        Watchlist
+                                                                    </section>
+                                                                    <a href="#top"
+                                                                       onClick={() => setdisplayData(movies[index])}>
                                                                         <button className="watch_now2">
                                                                             ▶
                                                                         </button>
