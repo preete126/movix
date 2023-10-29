@@ -106,7 +106,7 @@ function Filter({input}) {
                                         <h2 className="f_name">{displayData?.Title}</h2>
                                         <i>{displayData?.Language}</i>/
                                         <h1>{displayData?.Plot}</h1>
-                                        <h5>{displayData?.Poster}</h5>
+                                        <h5 style={{overflow:"scroll"}}>{displayData?.Poster}</h5>
                                     </section>
                             }
                             </main>
