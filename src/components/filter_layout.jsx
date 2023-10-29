@@ -67,19 +67,17 @@ function Filter({input}) {
                     <Navbar watchList={watchList}/>
 
                     {loading ?
-                        <div className="f_img text-center">
-                            <div className="spinner-grow text-light text-center"
-                                 style={{width: "30rem", height: "30rem"}} role="status">
-                                <span className="text-black d-flex" style={{
-                                    fontSize: "70px",
-                                    alignItems: "center",
-                                    justifyContent: "center"
-                                }}>MOVIX...</span>
+                        <div className="text-center my-auto " >
+                            <div className="spinner-grow rounded-circle text-light  text-center"
+                                 style={{width: "20rem", height: "20rem"}} role="status">
+                                <div className="d-flex align-items-center w-100 h-100 justify-content-center text-dark" style={{
+                                    fontSize: "50px",
+                                }}>Loading...</div>
                             </div>
                         </div> :
 
                         <>
-                            <main className="mb-5">{
+                            <main className="mb-5 mt-5">{
                                 !play ?
                                     <section id="top">
                                         <div className="f_img" style={{backgroundImage: `url(${bg1})`}}>
@@ -112,7 +110,7 @@ function Filter({input}) {
                             </main>
 
                             <main>
-                                <main className="row row-cols-1 row-cols-md-3 g-2 w-100 p-5">
+                                <main className="row row-cols-1 row-cols-md-3 g-2 w-100 py-5 px-3 px-sm-5">
                                     {movies.length == 0 ? <div>No result match your search</div> :
                                         < >{
                                             movies.map((value, index) =>
